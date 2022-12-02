@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/chickenImg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/chickenName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후라이드 치킨"
+                android:textStyle="bold"
+                android:textSize="25sp"/>
+            <TextView
+                android:id="@+id/chickenPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18,000원"
+                android:textSize="18sp"
+                android:textColor="#EF0707"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
