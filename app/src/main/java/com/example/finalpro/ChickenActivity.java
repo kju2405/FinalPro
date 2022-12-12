@@ -1,8 +1,10 @@
 package com.example.finalpro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,7 +19,9 @@ public class ChickenActivity extends AppCompatActivity {
     private ArrayList<ChickenRecyclerViewItem> mList= new ArrayList<ChickenRecyclerViewItem>();;
     private ChickenAdapter mRecyclerViewAdapter;
     int[] chickenImages = {R.drawable.kh_chicken, R.drawable.chicken_inner, R.drawable.chicken3,R.drawable.chicken4};
-    private Button btn_menu,btn_review,btn_reservation,btn_waiting;
+    private Button btn_menu,btn_review,btn_reservation,btn_waiting,btn_pos;
+    private TextView remainSeatsNum;
+    int remainSeats=10;
 
 
     @Override
@@ -29,6 +33,10 @@ public class ChickenActivity extends AppCompatActivity {
         btn_review=findViewById(R.id.btn_review);
         btn_reservation=findViewById(R.id.btn_reservation);
         btn_waiting=findViewById(R.id.btn_waiting);
+        btn_pos=findViewById(R.id.btn_pos);
+        remainSeatsNum=(TextView)findViewById(R.id.remainingSeats);
+        remainSeatsNum.setText("잔여좌석 : "+remainSeats+"좌석");
+
 
 
         btn_menu.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +94,21 @@ public class ChickenActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+    }
 
+    public void mOnClick(View view){
+        Intent intent=new Intent(this,SubActivity.class);
+        intent.putExtra("remainSeats",remainSeats);
+        startActivityForResult(intent,0);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        if(requestCode==0 && resultCode==RESULT_OK){
+            remainSeats=data.getIntExtra("result",0);
+            remainSeatsNum.setText("잔여좌석 : "+remainSeats+"좌석");
+        }
+        super.onActivityResult(requestCode,resultCode,data);
     }
 
 

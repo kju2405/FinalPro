@@ -42,6 +42,7 @@
         android:layout_marginLeft="20dp"
         android:text="현재 상태 : 영업중"/>
     <TextView
+        android:id="@+id/remainingSeats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -50,6 +51,13 @@
         android:textSize="17sp"
         android:layout_marginLeft="20dp"
         android:text="잔여좌석 : 7좌석"/>
+    <Button
+        android:id="@+id/btn_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:onClick="mOnClick"
+        android:text="POS Machine"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -96,6 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:enabled="false"
                     android:text="웨이팅 걸기"/>
             </LinearLayout>
 
