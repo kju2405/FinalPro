@@ -2,6 +2,7 @@ package com.example.finalpro;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class ChickenActivity extends AppCompatActivity {
         btn_pos=findViewById(R.id.btn_pos);
         remainSeatsNum=(TextView)findViewById(R.id.remainingSeats);
         remainSeatsNum.setText("잔여좌석 : "+remainSeats+"좌석");
+        Log.e("TAG","onCreate()");
 
 
 
@@ -96,6 +98,21 @@ public class ChickenActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("TAG","onStart");
+        if(remainSeats==0){
+            btn_waiting.setEnabled(true);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("TAG","onResume");
     }
 
     public void mOnClick(View view){
