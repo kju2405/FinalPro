@@ -32,6 +32,8 @@ public class ChickenActivity extends AppCompatActivity {
     String reservationTime,reservationName,reservationNum;
     String waitingPhone,waitingPeopelNum;
     private int waitingNum=0;
+    String lastResultWaiting="";
+    String lastResult="";
 
 
     @Override
@@ -45,7 +47,7 @@ public class ChickenActivity extends AppCompatActivity {
         btn_waiting=findViewById(R.id.btn_waiting);
         btn_pos=findViewById(R.id.btn_pos);
         remainSeatsNum=(TextView)findViewById(R.id.remainingSeats);
-        remainSeatsNum.setText("잔여좌석 : "+remainSeats+"좌석");
+//        remainSeatsNum.setText("잔여좌석 : "+remainSeats+"좌석");
         Log.e("TAG","onCreate()");
 
 
@@ -78,6 +80,7 @@ public class ChickenActivity extends AppCompatActivity {
                 Fragment_reservation fragment_reservation=new Fragment_reservation();
                 transaction.replace(R.id.frame,fragment_reservation);
                 transaction.commit();
+
             }
         });
 
@@ -117,6 +120,15 @@ public class ChickenActivity extends AppCompatActivity {
 //        else{
 //            btn_waiting.setEnabled(false);
 //        }
+        if(waitingNum!=0 && remainSeats!=0){
+            String enterPhone=lastResultWaiting.substring(0,11);
+            Toast.makeText(this, enterPhone+"님 입장하실게요.", Toast.LENGTH_SHORT).show();
+            int enterPos=lastResultWaiting.indexOf("\n");
+            lastResultWaiting=lastResultWaiting.substring(enterPos+1);
+//            Toast.makeText(this, enterPos+"", Toast.LENGTH_SHORT).show();
+            TextView waitingTextResult=(TextView) findViewById(R.id.waitingResult);
+            waitingTextResult.setText(lastResultWaiting);
+        }
     }
 
     @Override
@@ -127,16 +139,16 @@ public class ChickenActivity extends AppCompatActivity {
 
     public void updateResult(){
         TextView textResult=(TextView) findViewById(R.id.reservationResult);
-        String lastResult=textResult.getText().toString();
+        lastResult=textResult.getText().toString();
         lastResult=lastResult+reservationTime+" | "+reservationName+" | "+reservationNum+"명\n";
         textResult.setText(lastResult);
     }
 
     public void updateWaitingResult(){
         TextView waitingTextResult=(TextView) findViewById(R.id.waitingResult);
-        String lastResult=waitingTextResult.getText().toString();
-        lastResult+=waitingPhone+" | "+waitingPeopelNum+"명\n";
-        waitingTextResult.setText(lastResult);
+        lastResultWaiting=waitingTextResult.getText().toString();
+        lastResultWaiting+=waitingPhone+" | "+waitingPeopelNum+"명\n";
+        waitingTextResult.setText(lastResultWaiting);
     }
 
 
