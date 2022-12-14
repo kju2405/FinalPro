@@ -1,10 +1,12 @@
 package com.example.finalpro;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +27,13 @@ public class Fragment_reservation extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_reservation,container,false);
+        Log.e("TAG","onCreateViewReservation");
+        TextView reservationResult=rootView.findViewById(R.id.reservationResult);
+        reservationResult.setText(ChickenActivity.lastResult);
 
         return rootView;
     }
+
 
     class Reservations{
         private String time;

@@ -32,8 +32,8 @@ public class ChickenActivity extends AppCompatActivity {
     String reservationTime,reservationName,reservationNum;
     String waitingPhone,waitingPeopelNum;
     private int waitingNum=0;
-    String lastResultWaiting="";
-    String lastResult="";
+    static String lastResultWaiting="";
+    static String lastResult="";
 
 
     @Override

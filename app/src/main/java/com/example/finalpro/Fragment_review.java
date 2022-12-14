@@ -27,7 +27,7 @@ public class Fragment_review extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView= inflater.inflate(R.layout.fragment_review,container,false);
 
-        Log.d("TAG","onCreateViewReview");
+        Log.e("TAG","onCreateViewReview");
 
         reviews=new ArrayList<>();
         reviews.add(new Review("★★★★","맛있어요~~","(kju****)"));
