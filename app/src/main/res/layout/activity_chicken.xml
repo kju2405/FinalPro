@@ -13,6 +13,8 @@
         android:textSize="50sp"
         android:gravity="center"
         android:layout_marginTop="10dp"
+        android:background="@color/purple_200"
+        android:textColor="#000000"
         android:text="웅쓰 치킨"/>
     <TextView
         android:layout_width="match_parent"
