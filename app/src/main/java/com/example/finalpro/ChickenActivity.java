@@ -1,13 +1,17 @@
 package com.example.finalpro;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +29,7 @@ public class ChickenActivity extends AppCompatActivity {
     private TextView remainSeatsNum;
     int remainSeats=10;
     private String[] menuList=new String[10];
+    String reservationTime,reservationName,reservationNum;
 
 
     @Override
@@ -115,20 +120,59 @@ public class ChickenActivity extends AppCompatActivity {
         Log.e("TAG","onResume");
     }
 
+    public void updateResult(){
+        TextView textResult=(TextView) findViewById(R.id.reservationResult);
+        String lastResult=textResult.getText().toString();
+        lastResult=lastResult+reservationTime+" | "+reservationName+" | "+reservationNum+"명\n";
+        textResult.setText(lastResult);
+    }
+
+
     public void mOnClick(View view){
-        Intent intent=new Intent(this,SubActivity.class);
-        intent.putExtra("remainSeats",remainSeats);
-        intent.putExtra("num1",menuList[0]);
-        intent.putExtra("num2",menuList[1]);
-        intent.putExtra("num3",menuList[2]);
-        intent.putExtra("num4",menuList[3]);
-        intent.putExtra("num5",menuList[4]);
-        intent.putExtra("num6",menuList[5]);
-        intent.putExtra("num7",menuList[6]);
-        intent.putExtra("num8",menuList[7]);
-        intent.putExtra("num9",menuList[8]);
-        intent.putExtra("num10",menuList[9]);
-        startActivityForResult(intent,0);
+        switch (view.getId()){
+            case R.id.btn_pos:
+                Intent intent=new Intent(this,SubActivity.class);
+                intent.putExtra("remainSeats",remainSeats);
+                intent.putExtra("num1",menuList[0]);
+                intent.putExtra("num2",menuList[1]);
+                intent.putExtra("num3",menuList[2]);
+                intent.putExtra("num4",menuList[3]);
+                intent.putExtra("num5",menuList[4]);
+                intent.putExtra("num6",menuList[5]);
+                intent.putExtra("num7",menuList[6]);
+                intent.putExtra("num8",menuList[7]);
+                intent.putExtra("num9",menuList[8]);
+                intent.putExtra("num10",menuList[9]);
+                startActivityForResult(intent,0);
+                break;
+            case R.id.btn_makeReservation:
+                AlertDialog.Builder builder;
+                builder=new AlertDialog.Builder(this);
+                LayoutInflater inflater=getLayoutInflater();
+                View layout=inflater.inflate(R.layout.dialog_reservation,null);
+                builder.setView(layout);
+
+                final EditText mEditTime=(EditText) layout.findViewById(R.id.editTime);
+                final EditText mEditName=(EditText) layout.findViewById(R.id.editName);
+                final EditText mEditPeopleNum=(EditText) layout.findViewById(R.id.editPeopleNum);
+
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        reservationTime=mEditTime.getText().toString();
+                        reservationName=mEditName.getText().toString();
+                        reservationNum=mEditPeopleNum.getText().toString();
+                        updateResult();
+                    }
+                });
+
+                builder.setNegativeButton(android.R.string.cancel,null);
+
+                builder.create().show();
+                break;
+
+        }
+
     }
 
     @Override

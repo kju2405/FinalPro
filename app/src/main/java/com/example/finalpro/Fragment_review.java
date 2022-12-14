@@ -1,6 +1,7 @@
 package com.example.finalpro;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ public class Fragment_review extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView= inflater.inflate(R.layout.fragment_review,container,false);
+
+        Log.d("TAG","onCreateViewReview");
 
         reviews=new ArrayList<>();
         reviews.add(new Review("★★★★","맛있어요~~","(kju****)"));

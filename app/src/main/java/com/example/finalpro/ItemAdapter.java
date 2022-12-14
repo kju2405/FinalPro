@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,25 +20,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private List<ItemModel> mDataList;
     private List<ItemModel> mDataListAll;
 
-    //constructor
+
     public ItemAdapter(List<ItemModel> items) {
         mDataList = items;
         mDataListAll = new ArrayList<>(items);
     }
 
-    //interface - 클릭인터페이스
+
     private onItemListener mListener;
     public void setOnClickListener(onItemListener listener){
         mListener = listener;
     }
 
-    //data set changed
     public void dataSetChanged(List<ItemModel> exampleList) {
         mDataList = exampleList;
         notifyDataSetChanged();
     }
 
-    //1.onCreateViewHolder -------------------------------------------------------
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,7 +46,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return new ItemViewHolder(v);
     }
 
-    //2.onBindViewHolder  -------------------------------------------------------
     @Override
     public void onBindViewHolder(@NonNull final ItemViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ItemModel currentItem = mDataList.get(position);
@@ -68,18 +65,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 //                    mListener.onItemClicked(item);
                 }
             });
-            //버튼등에도 동일하게 지정할 수 있음 holder.버튼이름.setOnClickListener..형식으로
         }
     }
 
-    //3.getItemCount  -------------------------------------------------------
+
     @Override
     public int getItemCount() {
         return mDataList.size();
     }
 
 
-    // 데이터 필터 검색 Filterable implement ---------------------------------
+
     @Override
     public Filter getFilter() {
         return exampleFilter;
@@ -116,7 +112,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
     };
 
-    // 뷰홀더 클래스  ---------------------------------
     class ItemViewHolder extends RecyclerView.ViewHolder {
         // TODO : 뷰홀더 완성하시오
 
@@ -132,14 +127,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
     }
 
-    //onclick listener interface
-    //1. interface onItemListener 선언
-    //2. 내부에서 mListener 선언하고
-    // 외부에서 접근가능하도록 setOnClickListener작성
-    //3.onBindViewHolder에서 처리
     public interface onItemListener {
         void onItemClicked(int position);
-        //void onItemClicked(ItemModel model); 모델값을 넘길수 있음
-        //다른버튼도 정의할 수 있음 onShareButtonClicked(int position);
     }
 }
