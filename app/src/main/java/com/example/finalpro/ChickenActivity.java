@@ -240,7 +240,7 @@ public class ChickenActivity extends AppCompatActivity {
             menuList[7]=data.getStringExtra("num8");
             menuList[8]=data.getStringExtra("num9");
             menuList[9]=data.getStringExtra("num10");
-            Toast.makeText(this.getApplicationContext(),"잔여좌석 : "+remainSeats,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this.getApplicationContext(),"잔여좌석 : "+remainSeats,Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode,resultCode,data);
     }
