@@ -9,26 +9,31 @@
         android:layout_height="64dp"
         android:background="#ffaa55"
         android:gravity="center"
-        android:text="예약하기"
+        android:text="웨이팅 걸기"
         android:textColor="#000000"
         android:textSize="20dp"
         android:textStyle="bold"/>
-    <EditText
-        android:id="@+id/editTime"
+    <TextView
+        android:id="@+id/waitingTextNow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="시간(00:00)"
-        android:text=""/>
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="이름"/>
-    <EditText
-        android:id="@+id/editPeopleNum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="인원수"/>
+        android:text="현재 1팀이 대기중입니다."
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"/>
 
+    <EditText
+        android:id="@+id/waitingPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="전화번호를 남겨주세요."
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/waitingNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="예약인원을 남겨주세요."
+        android:inputType="number"/>
 
 </LinearLayout>

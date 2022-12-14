@@ -30,6 +30,8 @@ public class ChickenActivity extends AppCompatActivity {
     int remainSeats=10;
     private String[] menuList=new String[10];
     String reservationTime,reservationName,reservationNum;
+    String waitingPhone,waitingPeopelNum;
+    private int waitingNum=0;
 
 
     @Override
@@ -112,6 +114,9 @@ public class ChickenActivity extends AppCompatActivity {
         if(remainSeats==0){
             btn_waiting.setEnabled(true);
         }
+//        else{
+//            btn_waiting.setEnabled(false);
+//        }
     }
 
     @Override
@@ -125,6 +130,13 @@ public class ChickenActivity extends AppCompatActivity {
         String lastResult=textResult.getText().toString();
         lastResult=lastResult+reservationTime+" | "+reservationName+" | "+reservationNum+"명\n";
         textResult.setText(lastResult);
+    }
+
+    public void updateWaitingResult(){
+        TextView waitingTextResult=(TextView) findViewById(R.id.waitingResult);
+        String lastResult=waitingTextResult.getText().toString();
+        lastResult+=waitingPhone+" | "+waitingPeopelNum+"명\n";
+        waitingTextResult.setText(lastResult);
     }
 
 
@@ -170,7 +182,33 @@ public class ChickenActivity extends AppCompatActivity {
 
                 builder.create().show();
                 break;
+            case R.id.btn_waiting:
+                AlertDialog.Builder builderWaiting;
+                builderWaiting=new AlertDialog.Builder(this);
+                LayoutInflater inflaterWaiting=getLayoutInflater();
+                View layoutWaiting=inflaterWaiting.inflate(R.layout.dialog_waiting,null);
+                builderWaiting.setView(layoutWaiting);
 
+                final EditText mEditPhone=(EditText) layoutWaiting.findViewById(R.id.waitingPhone);
+                final EditText mEditWaitingPeopleNum=(EditText) layoutWaiting.findViewById(R.id.waitingNum);
+                TextView waitingNow=(TextView)layoutWaiting.findViewById(R.id.waitingTextNow);
+                String waitingNowText="현재 "+waitingNum+"명이 대기중입니다.";
+                waitingNow.setText(waitingNowText);
+
+
+                builderWaiting.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        waitingPhone=mEditPhone.getText().toString();
+                        waitingPeopelNum=mEditWaitingPeopleNum.getText().toString();
+                        updateWaitingResult();
+                        waitingNum++;
+                    }
+                });
+
+                builderWaiting.setNegativeButton(android.R.string.cancel,null);
+
+                builderWaiting.create().show();
         }
 
     }
