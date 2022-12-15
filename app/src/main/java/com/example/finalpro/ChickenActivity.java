@@ -128,6 +128,7 @@ public class ChickenActivity extends AppCompatActivity {
 //            Toast.makeText(this, enterPos+"", Toast.LENGTH_SHORT).show();
             TextView waitingTextResult=(TextView) findViewById(R.id.waitingResult);
             waitingTextResult.setText(lastResultWaiting);
+            waitingNum--;
         }
     }
 
