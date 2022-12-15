@@ -29,14 +29,14 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.onIte
     }
 
 
-     //리사이클러뷰, 어댑터 셋팅
+     
     private void setUpRecyclerView() {
         //recyclerview
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        //adapter
+
         itemList = new ArrayList<>();
         fillData();
         adapter = new ItemAdapter(itemList);
@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.onIte
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL); //밑줄
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        //데이터셋변경시
-        //adapter.dataSetChanged(exampleList);
 
         adapter.setOnClickListener(this);
     }
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.onIte
     }
 
 
-     //onCreateOptionsMenu SearchView  기능구현
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.onIte
     }
 
 
-    //리사이클러뷰 클릭이벤트 인터페이스 구현
+
     @Override
     public void onItemClicked(int position) {
 //        Toast.makeText(this, "" +position, Toast.LENGTH_SHORT).show();
